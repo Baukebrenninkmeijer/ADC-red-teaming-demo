@@ -72,9 +72,12 @@ Start with the validated on-stage run:
 [`ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json`](data/redteam-runs/ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json).
 Regenerate the folder from local `.evaluatorq/runs/` with `uv run python sanitize_runs.py`.
 
-Prefer it interactive? [`hf-space/`](hf-space/) is a Docker Hugging Face Space that
-runs `eq redteam ui` over that report — browse each attack, response, and verdict in a
-Streamlit dashboard. See [`hf-space/README.md`](hf-space/README.md) to run it locally or deploy.
+Prefer it interactive? It's live as a Hugging Face Space — browse each attack,
+response, and verdict in the `eq redteam ui` Streamlit dashboard:
+
+[![View live on Hugging Face Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/orq/clarabelle-redteam)
+
+Source + local-run instructions: [`hf-space/`](hf-space/). Redeploy with `uv run python hf-space/deploy_space.py`.
 
 ## Deck
 
