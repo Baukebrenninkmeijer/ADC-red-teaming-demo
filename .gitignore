@@ -19,3 +19,6 @@ docs/
 # Self-contained deck build — regenerated locally via deck/inline_assets.py
 # (inlines all images; exceeds the 5 MB repo cap, so it is not tracked).
 deck/security-of-ai-agents.bundle.html
+
+# Local experiment outputs (contain internal workspace/experiment IDs).
+output/
