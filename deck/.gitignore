@@ -1,0 +1,6 @@
+# Large media kept on disk for the live demo (repo caps files at 1MB).
+# Re-fetch: yt-dlp -f mp4 -o "assets/mcp-attack.%(ext)s" https://x.com/pulik_io/status/1910053590921535992
+assets/*.mp4
+
+# Bundle is built locally on demand; not committed (assets inlined, exceeds repo file cap).
+security-of-ai-agents.bundle.html

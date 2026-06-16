@@ -1,0 +1,21 @@
+# Secrets — never commit
+.env
+
+# Python / tooling
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.evaluatorq/
+
+# OS
+.DS_Store
+
+# Run outputs
+results/
+docs/
+
+# Self-contained deck build — regenerated locally via deck/inline_assets.py
+# (inlines all images; exceeds the 5 MB repo cap, so it is not tracked).
+deck/security-of-ai-agents.bundle.html
