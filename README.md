@@ -72,6 +72,10 @@ Start with the validated on-stage run:
 [`ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json`](data/redteam-runs/ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json).
 Regenerate the folder from local `.evaluatorq/runs/` with `uv run python sanitize_runs.py`.
 
+Prefer it interactive? [`hf-space/`](hf-space/) is a Docker Hugging Face Space that
+runs `eq redteam ui` over that report — browse each attack, response, and verdict in a
+Streamlit dashboard. See [`hf-space/README.md`](hf-space/README.md) to run it locally or deploy.
+
 ## Deck
 
 `deck/security-of-ai-agents.html` is the source deck — edit it directly. Rebuild the
