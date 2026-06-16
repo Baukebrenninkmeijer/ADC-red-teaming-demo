@@ -13,6 +13,7 @@ Env (from .env, ADC project key):
 
 from __future__ import annotations
 
+import argparse
 import asyncio
 import os
 import time
@@ -28,7 +29,7 @@ RESULTS_DIR = DEMO_DIR / "results"
 TARGET = "agent:clarabelle-cow"
 
 
-async def main() -> None:
+async def main(datapoints: int = 40) -> None:
     load_dotenv(DEMO_DIR / ".env", override=True)
     os.environ.pop("OPENAI_API_KEY", None)  # force ORQ router; shell OPENAI_API_KEY would shadow it
 
@@ -36,7 +37,10 @@ async def main() -> None:
         raise SystemExit("ERROR: ORQ_API_KEY not set (check .env).")
 
     attacker_instructions = (DEMO_DIR / "agents" / "clarabelle_attacker_instructions.txt").read_text()
-    model = LLMCallConfig(model="openai/gpt-5.4")
+    attacker_model = LLMCallConfig(model="google/gemini-3.5-flash")
+    evaluator_model = LLMCallConfig(model="openai/gpt-5.4")
+    dynamic = datapoints // 2
+    static = datapoints - dynamic
 
     start = time.time()
     # red_team persists the report itself: a timestamped copy in ./.evaluatorq/runs/
@@ -46,12 +50,12 @@ async def main() -> None:
         vulnerabilities=["goal_hijacking"],
         mode="hybrid",
         max_turns=20,
-        max_dynamic_datapoints=20,
-        max_static_datapoints=20,
-        generated_strategy_count=20,
+        max_dynamic_datapoints=dynamic,
+        max_static_datapoints=static,
+        generated_strategy_count=dynamic,
         attacker_instructions=attacker_instructions,
         parallelism=10,
-        llm_config=LLMConfig(attacker=model, evaluator=model),
+        llm_config=LLMConfig(attacker=attacker_model, evaluator=evaluator_model),
         generate_recommendations=True,
         verbosity=1,
         name="ADC Demo — Clarabelle Goal Hijacking",
@@ -66,4 +70,7 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--datapoints", type=int, default=40, help="Total attacks (split evenly dynamic/static).")
+    args = parser.parse_args()
+    asyncio.run(main(args.datapoints))

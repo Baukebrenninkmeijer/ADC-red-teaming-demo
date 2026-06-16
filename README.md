@@ -68,9 +68,11 @@ Clarabelle campaigns — each attack prompt, the agent's response, the judge ver
 and per-run summaries. Internal orq workspace/experiment handles are redacted; the
 attack and result content is untouched.
 
-Start with the validated on-stage run:
-[`ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json`](data/redteam-runs/ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json).
-Regenerate the folder from local `.evaluatorq/runs/` with `uv run python sanitize_runs.py`.
+Featured run — 100 attacks, `google/gemini-3.5-flash` attacker, `openai/gpt-5.4` judge,
+**89% resistance (11/100 hijacked)**:
+[`ADC-Demo---Clarabelle-Goal-Hijacking_20260616_225858.json`](data/redteam-runs/ADC-Demo---Clarabelle-Goal-Hijacking_20260616_225858.json).
+Regenerate the folder from local `.evaluatorq/runs/` with `uv run python sanitize_runs.py`;
+re-run the campaign with `uv run python adc_demo_redteam.py --datapoints 100`.
 
 Prefer it interactive? It's live as a Hugging Face Space — browse each attack,
 response, and verdict in the `eq redteam ui` Streamlit dashboard:
