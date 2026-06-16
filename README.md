@@ -33,7 +33,7 @@ something else (goal hijacking), then scores how often she breaks character.
 | `agents/clarabelle_attacker_instructions.txt` | Instructions for the attacker LLM. |
 | `agents/clarabelle_judge_prompt.txt` | The "still a cow?" judge prompt. |
 | `deck/` | The HTML slide deck, assets, and the on-stage `DEMO_RUNBOOK.md`. |
-| `output/`, `results/` | Captured red-team reports from prior runs. |
+| `data/redteam-runs/` | Sanitized red-team run reports from prior Clarabelle campaigns — see below. |
 
 ## Setup
 
@@ -59,6 +59,18 @@ uv run python adc_demo_redteam.py
 
 The run prints a resistance rate (how often Clarabelle stayed a cow) and writes a
 report to `results/03_summary_report.json`.
+
+## Red-team run data
+
+Want to see what the attacks and verdicts actually look like? The
+[`data/redteam-runs/`](data/redteam-runs/) folder holds sanitized reports from real
+Clarabelle campaigns — each attack prompt, the agent's response, the judge verdict,
+and per-run summaries. Internal orq workspace/experiment handles are redacted; the
+attack and result content is untouched.
+
+Start with the validated on-stage run:
+[`ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json`](data/redteam-runs/ADC-Demo---Clarabelle-Goal-Hijacking_20260607_123646.json).
+Regenerate the folder from local `.evaluatorq/runs/` with `uv run python sanitize_runs.py`.
 
 ## Deck
 
